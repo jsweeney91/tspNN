@@ -1,0 +1,29 @@
+package pckg1;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class Reader {
+	String fName;
+	
+	Reader(String fName){
+		this.fName = fName;
+	}
+	
+	public ArrayList<Node> readFile(){
+		ArrayList<Node> nodes = new ArrayList<>();
+		BufferedReader br = null;
+		FileReader fr = null;
+		
+		try{
+			
+		}catch(IOException e){
+			return null;
+		}
+		return nodes;
+		
+	}
+	
+}

@@ -1,0 +1,47 @@
+package pckg1;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.geom.Line2D;
+import java.util.ArrayList;
+
+import javax.swing.JComponent;
+
+public class Visualiser extends JComponent{
+	ArrayList<Line2D.Double> lines;
+	
+	Visualiser(int width, int height){
+		super();
+		setPreferredSize(new Dimension(width, height));
+		this.lines = new ArrayList<Line2D.Double>();
+	}
+	
+	public void addLine(Node a, Node b){
+		double x1 = a.getX();
+		double x2 = b.getX();
+		double y1 = a.getY();
+		double y2 = b.getY();
+		
+		int height = (int)getPreferredSize().getHeight();
+		int width = (int)getPreferredSize().getWidth();
+		
+		x1 = width/Reader.maxX * x1;
+		x2 = width/Reader.maxX * x2;
+		y1 = height/Reader.maxY * y1;
+		y2 = height/Reader.maxY * y2;
+		
+		Line2D.Double line = new Line2D.Double(x1, y1, x2, y2);				
+		this.lines.add(line);
+	}
+	
+	public void paintComponent(Graphics g){
+		g.setColor(Color.white);
+		g.fillRect(0, 0, getWidth(), getHeight());
+		Dimension d = getPreferredSize();
+		for(Line2D.Double line : lines){
+			g.setColor(Color.black);
+			g.drawLine((int)line.getX1(), (int)line.getY1(), (int)line.getX2(), (int)line.getY2());
+		}
+	}
+}
